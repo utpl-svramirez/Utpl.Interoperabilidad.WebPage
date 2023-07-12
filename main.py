@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 
+import requests
+
 app = Flask(__name__)
 
 # Lista de personas
@@ -17,7 +19,8 @@ def about():
 
 @app.route('/personas')
 def personas():
-    return render_template('personas.html', personas=personaList)
+    response = requests.get('https://utpl-interoperabilidad-fdquinones.onrender.com/v1_0/personas')
+    return render_template('personas.html', personas=response.json())
 
 @app.route('/personas', methods=['POST'])
 def add():
