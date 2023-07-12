@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h4 class="my-4">Listado de personas</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Edad</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for persona in personas %}
+        <tr>
+          <td>{{ persona.nombre }}</td>
+          <td>{{ persona.apellido }}</td>
+          <td>{{ persona.edad }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h4 class="my-4">Agregar una nueva persona</h4>
+  <form action="/personas" method="post">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+    <div class="mb-3">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="apellido" name="apellido" required>
+    </div>
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad</label>
+      <input type="number" class="form-control" id="edad" name="edad" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+{% endblock %}
